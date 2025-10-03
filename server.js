@@ -5,6 +5,7 @@ const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const leadsRouter = require('./src/routes/leads');
+const resumesRouter = require('./src/routes/resumes');
 
 const app = express();
 
@@ -16,9 +17,10 @@ app.get('/api/health', (req, res) => {
 });
 
 app.use('/api/leads', leadsRouter);
+app.use('/api/resumes', resumesRouter);
 
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.DB_URI;
+const MONGO_URI = process.env.DB_URI || 'mongodb://localhost:27017/tnt-db';
 
 // 🔑 Persistent DB connection
 let isConnected = false;
