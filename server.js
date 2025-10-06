@@ -12,6 +12,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+// --- Ping endpoint (yeh add karo) ---
+app.get('/ping', (req, res) => {
+  res.send('Server is awake ✅');
+});
+
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
