@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+import fetch from 'node-fetch'; // if using ES modules
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const leadsRouter = require('./src/routes/leads');
@@ -17,6 +18,12 @@ app.use(express.json());
 app.get('/ping', (req, res) => {
   res.send('Server is awake ✅');
 });
+
+setInterval(() => {
+  fetch("https://ta-landing-page-backend-1-1.onrender.com")
+    .then(() => console.log("Pinged self to keep awake"))
+    .catch((err) => console.error("Ping failed", err));
+}, 5 * 60 * 1000); // every 5 minutes
 
 
 app.get('/api/health', (req, res) => {
