@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-import fetch from 'node-fetch'; // if using ES modules
+const fetch = require('node-fetch');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const leadsRouter = require('./src/routes/leads');
